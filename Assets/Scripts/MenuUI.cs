@@ -12,10 +12,11 @@ using UnityEngine.SceneManagement;
 public class MenuUI : MonoBehaviour
 {
     public TextMeshProUGUI ScoreText;
+    public TextMeshProUGUI NameText;
     // Start is called before the first frame update
     void Start()
     {
-        
+        ScoreText.text = "Best Score : " + MainManagerUI.Instance.Name + " : 0";
     }
 
     // Update is called once per frame
@@ -26,6 +27,8 @@ public class MenuUI : MonoBehaviour
 
     public void StartButton()
     {
+        MainManagerUI.Instance.Name = NameText.text;
+        MainManagerUI.Instance.SaveName();
         SceneManager.LoadScene(1);
     }
 
@@ -42,6 +45,6 @@ public class MenuUI : MonoBehaviour
     public void LoadSavedName()
     {
         MainManagerUI.Instance.LoadName();
-        ScoreText.text = "Best Score : " + MainManagerUI.Instance.Name + ": 0";
+        ScoreText.text = "Best Score : " + MainManagerUI.Instance.Name + " : 0";
     }
 }

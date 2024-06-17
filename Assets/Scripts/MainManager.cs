@@ -23,7 +23,7 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreText2.text = "Best Score : " + MainManagerUI.Instance.Name + ": 0";
+        ScoreText2.text = "Best Score : " + MainManagerUI.Instance.Name + " : 0";
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         

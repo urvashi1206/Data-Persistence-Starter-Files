@@ -18,6 +18,7 @@ public class MainManagerUI : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(Instance);
+        LoadName();
     }
 
     [System.Serializable]
@@ -28,6 +29,7 @@ public class MainManagerUI : MonoBehaviour
 
     public void SaveName()
     {
+        print(Name);
         SaveData data = new SaveData();
         data.Name = Name;
 
