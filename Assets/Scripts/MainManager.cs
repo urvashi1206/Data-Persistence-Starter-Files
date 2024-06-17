@@ -23,7 +23,8 @@ public class MainManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreText2.text = "Best Score : " + MainManagerUI.Instance.Name + " : 0";
+        LoadHighScore();
+        ScoreText2.text = "Best Score : " + MainManagerUI.Instance.Name + " : " + MainManagerUI.Instance.highScore;
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -68,11 +69,30 @@ public class MainManager : MonoBehaviour
     {
         m_Points += point;
         ScoreText.text = $"Score : {m_Points}";
+        if (MainManagerUI.Instance.highScore < m_Points)
+        {
+            MainManagerUI.Instance.highScore = m_Points;
+            MainManagerUI.Instance.Name = PlayerPrefs.GetString("CurrentPlayerName", "Player");
+            MainManagerUI.Instance.SaveNameandScore();
+            UpdateHighScoreDisplay();
+        }
     }
 
     public void GameOver()
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
+        UpdateHighScoreDisplay();
+    }
+
+    void LoadHighScore()
+    {
+        MainManagerUI.Instance.LoadNameandScore();
+        UpdateHighScoreDisplay();
+    }
+
+    void UpdateHighScoreDisplay()
+    {
+        ScoreText.text = $"Score : {m_Points}";
     }
 }

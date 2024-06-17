@@ -16,7 +16,7 @@ public class MenuUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ScoreText.text = "Best Score : " + MainManagerUI.Instance.Name + " : 0";
+        LoadBestScore();
     }
 
     // Update is called once per frame
@@ -27,8 +27,7 @@ public class MenuUI : MonoBehaviour
 
     public void StartButton()
     {
-        MainManagerUI.Instance.Name = NameText.text;
-        MainManagerUI.Instance.SaveName();
+        PlayerPrefs.SetString("CurrentPlayerName", NameText.text);
         SceneManager.LoadScene(1);
     }
 
@@ -42,9 +41,8 @@ public class MenuUI : MonoBehaviour
 #endif
     }
 
-    public void LoadSavedName()
+    public void LoadBestScore()
     {
-        MainManagerUI.Instance.LoadName();
-        ScoreText.text = "Best Score : " + MainManagerUI.Instance.Name + " : 0";
+        ScoreText.text = "Best Score : " + MainManagerUI.Instance.Name + " : " + MainManagerUI.Instance.highScore;
     }
 }
